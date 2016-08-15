@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <!--<base href="/">-->
+    <title>Clare and Bruce Chat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/main-styles.css">
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="js/vendor/shim.min.js"></script>
+    <script src="js/vendor/zone.min.js"></script>
+    <script src="js/vendor/Reflect.js"></script>
+    <script src="js/vendor/system.js"></script>
+    <!--
+    Development mod
+
+    <script src="js/systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err) { console.error(err); });
+    </script>
+    -->
+  </head>
+
+  <!-- 3. Display the application -->
+  <body>
+    <chat-app>Loading...</chat-app>
+
+    <!-- Production mod -->
+    <<script src="js/bundle.min.js"></script>
+  </body>
+</html>

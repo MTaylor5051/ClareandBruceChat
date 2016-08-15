@@ -1,0 +1,91 @@
+<div class="row" *ngIf="!selectedCharacter">
+    <div class="col-sm-10 col-sm-offset-1">
+        <div class="row">
+        <div class="col-sm-6 select-bruce">
+            <div class="bruce-large-ring">
+                <img src="images/paramour_bruce.png" class="show-bruce-label" *ngIf="!convoState.bruceAvailable" (click)="selectBruce();"  />
+                <img src="images/bruce_taken.png" class="taken" *ngIf="convoState.bruceAvailable"/>
+            </div>
+        </div>
+        <div class="col-sm-6 select-clare">
+            <div class="clare-large-ring">
+                <img src="images/mistress_clare.png" class="show-clare-label" *ngIf="!convoState.clareAvailable" (click)="selectClare();" />
+                <img src="images/clare_taken.png" class="taken" *ngIf="convoState.clareAvailable"/>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="row" *ngIf="selectedCharacter">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="row">
+                <div class="col-sm-6 text-left">
+                    <div class="tv-container">
+                        <img src="images/chat_video_tv_filled_screen.png" class="tv" />
+
+                        <video *ngIf="video.waiting" autoplay preload="auto" class="video" loop poster="images/video_bg.gif">
+                        <source src="media/waiting_for_lover.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        </video>
+
+                        <video *ngIf="video.bruce" autoplay preload="auto" class="video" loop poster="images/video_bg.gif">
+                        <source src="media/bruce_talking.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        </video>
+
+                        <video *ngIf="video.clare" autoplay preload="auto" class="video" loop poster="images/video_bg.gif">
+                        <source src="media/clare_talking.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        </video>
+
+                        <video *ngIf="video.onHold" autoplay preload="auto" class="video" loop poster="images/video_bg.gif">
+                        <source src="media/on_hold_movie.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                        </video>                                                                        
+                    </div>
+                </div>
+                    <div class="col-sm-6">
+                        <div class="row" style="margin-bottom:10px;">
+                        <div class="col-sm-10 col-sm-offset-1 text-right">
+                        <button class="btn btn-primary" *ngIf="selectedCharacterName === 'Clare'" (click)="deselectClare()">Switch Character</button>
+                        <button class="btn btn-primary" *ngIf="selectedCharacterName === 'Bruce'" (click)="deselectBruce()">Switch Character</button>&nbsp;
+                        <button class="btn btn-danger" (click)="placeOnHold()" *ngIf="video.onHold === false">Place On Hold</button>
+                        <button class="btn btn-success" (click)="removeOnHold()" *ngIf="video.onHold === true">Place Off Hold</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="chat-window">
+                              <div class="chat-window-scroll-area">
+                                  <div class="row chat-row-margin" *ngFor="let message of messages">
+                                      <div class="col-sm-8 col-sm-offset-1 guy-bubble" *ngIf="message.name === 'Bruce'">
+                                          {{ message.message }}
+                                      </div>
+                                      <div class="col-sm-2" *ngIf="message.name === 'Bruce'">
+                                          <img src="images/bruce_bubble.jpg"/>
+                                      </div>
+                                     <div class="col-sm-2 col-sm-offset-1" *ngIf="message.name === 'Clare'">
+                                         <img src="images/clare_bubble.jpg"/>
+                                     </div>
+                                     <div class="col-sm-8 girl-bubble" *ngIf="message.name === 'Clare'">
+                                          {{ message.message }}
+                                      </div>
+                                 </div>                                
+                              </div>
+                           </div>
+                           <div class="input-group" style="margin-top:15px;">
+                               <input type="text" class="form-control input-lg" maxlength="140" placeholder="Enter Message Here" [(ngModel)]="message.message">
+                               <span class="input-group-btn">
+                                   <button class="btn btn-default btn-lg" type="button" (click)="submitMessage()">Send</button>
+                               </span>     
+                           </div>
+                        </div>
+                     </div>
+                 </div>   
+            </div>
+        </div>
+    </div>
+<!--<audio preload="auto" style="display:none;" #song>
+  <source src="media/song.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>-->
