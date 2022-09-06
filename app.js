@@ -16,7 +16,7 @@ if (app.get('env') !== 'production') {
   // expose node_modules to client app
   app.use(express.static(__dirname + "/node_modules"));
 }
-
+// Test
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json());
